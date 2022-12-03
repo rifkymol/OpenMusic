@@ -55,8 +55,8 @@ class AlbumsHandler {
       status: 'success',
       data: {
         albums,
-      }
-    }
+      },
+    };
   }
 
   getAlbumByIdHandler(request, h){
