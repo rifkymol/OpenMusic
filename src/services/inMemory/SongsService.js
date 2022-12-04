@@ -3,17 +3,17 @@ const InvariantError = require("../../exceptions/InvariantError");
 const NotFoundError = require("../../exceptions/NotFoundError");
 
 class SongsService {
-  constructor() {
+  constructor(){
     this._songs = [];
   }
 
-  addSong({ title, year, genre, performer, duration }){
+  addSong({ name, year, genre, performer, duration }){
     const id = nanoid(16);
     const createdAt = new Date().toISOString();
     const updatedAt = createdAt;
 
     const newSong = {
-      id, title, year, genre, performer, duration, createdAt, updatedAt,
+      id, name, year, genre, performer, duration, createdAt, updatedAt,
     };
 
     this._songs.push(newSong);
@@ -41,7 +41,7 @@ class SongsService {
     return song;
   }
 
-  editSongById(id, {title, year, genre, performer, duration}){
+  editSongById(id, {name, year, genre, performer, duration}){
     const index = this._songs.findIndex((song) => song.id === id);
     
     if (index === -1) {
@@ -52,7 +52,7 @@ class SongsService {
 
     this._songs[index] = {
       ...this._songs[index],
-      title, 
+      name, 
       year, 
       genre, 
       performer, 
