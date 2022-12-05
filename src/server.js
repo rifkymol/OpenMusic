@@ -11,7 +11,6 @@ const SongsService = require('./services/postgres/SongsService');
 const SongValidator = require('./validator/songs');
 
 const init = async () => {
-  
   const albumService = new AlbumService();
   const songService = new SongsService();
 
@@ -26,18 +25,18 @@ const init = async () => {
   });
 
   await server.register([{
-      plugin: albums,
-      options: {
-        service: albumService,
-        validator: AlbumValidator,
-      }
-    }, {
-      plugin: songs,
-      options: {
-        service: songService,
-        validator: SongValidator,
-      }
-    }
+    plugin: albums,
+    options: {
+      service: albumService,
+      validator: AlbumValidator,
+    },
+  }, {
+    plugin: songs,
+    options: {
+      service: songService,
+      validator: SongValidator,
+    },
+  },
   ]);
 
   await server.start();

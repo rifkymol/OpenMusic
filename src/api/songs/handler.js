@@ -1,7 +1,7 @@
-const ClientError = require("../../exceptions/ClientError");
+const ClientError = require('../../exceptions/ClientError');
 
 class SongsHandler {
-  constructor(service, validator){
+  constructor(service, validator) {
     this._service = service;
     this._validator = validator;
 
@@ -12,7 +12,7 @@ class SongsHandler {
     this.deleteSongByIdHandler = this.deleteSongByIdHandler.bind(this);
   }
 
-  async postSongHandler(request, h){
+  async postSongHandler(request, h) {
     try {
       this._validator.validateSongPayload(request.payload);
       const { title = 'untitled', year, genre, performer, duration } = request.payload;
@@ -48,7 +48,7 @@ class SongsHandler {
     }
   }
 
-  async getSongsHandler(){
+  async getSongsHandler() {
     const songs = await this._service.getSongs();
 
     return {
@@ -59,9 +59,9 @@ class SongsHandler {
     };
   }
 
-  async getSongByIdHandler(request, h){
+  async getSongByIdHandler(request, h) {
     try {
-      const { id } = request.params;
+      const {id} = request.params;
 
       const song = await this._service.getSongById(id);
 
@@ -91,10 +91,10 @@ class SongsHandler {
     }
   }
 
-  async putSongByIdHandler(request, h){
+  async putSongByIdHandler(request, h) {
     try {
       this._validator.validateSongPayload(request.payload);
-      const { id } = request.params;
+      const {id} = request.params;
 
       await this._service.editSongById(id, request.payload);
 
@@ -122,9 +122,9 @@ class SongsHandler {
     }
   }
 
-  async deleteSongByIdHandler(request, h){
+  async deleteSongByIdHandler(request, h) {
     try {
-      const { id } = request.params;
+      const {id} = request.params;
 
       await this._service.deleteSongById(id);
 
